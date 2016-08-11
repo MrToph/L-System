@@ -6,7 +6,7 @@ class Productions extends React.Component {
     return (
     <div>
       <h2>Productions</h2>
-      <ProductionsText onChange={this.props.onChange} productions={this.props.productions} />
+      <ProductionsText />
     </div>
     );
   }

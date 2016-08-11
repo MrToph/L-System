@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { productionsChanged } from '../actions';
 
 class ProductionsText extends React.Component {
   constructor (props) {
@@ -18,9 +20,22 @@ class ProductionsText extends React.Component {
   }
 
   handleChange (event) {
-    console.log('Productions::handleChange', event.target.value);
-    this.props.onChange(event.target.value);
+    this.props.fireProductionsChanged(event.target.value);
   }
 }
 
-export default ProductionsText;
+const mapStateToProps = state => {
+  return {
+    productions: state.grammar.productions
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    fireProductionsChanged: (something) => {
+      dispatch(productionsChanged(something));
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductionsText);

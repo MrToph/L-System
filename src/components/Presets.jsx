@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { presetSelected, productionsChanged } from '../actions';
 import PresetsData from '../constants/PresetsData';
 
 class Presets extends React.Component {
@@ -21,18 +23,31 @@ class Presets extends React.Component {
   }
 
   onChange (event) {
-    console.log('Preset changed', event.target.value, this);
     this.updateState(event.target.value);
   }
 
   updateState (selectedIndex) {
-    this.props.onChange(selectedIndex, PresetsData[selectedIndex][1]);
+    this.props.dispatchPresetSelected(selectedIndex);
   }
 
   componentDidMount () {
-    console.log('preset mounted', this.props.selectedPreset);
     this.updateState(this.props.selectedPreset);
   }
 }
 
-export default Presets;
+const mapStateToProps = state => {
+  return {
+    selectedPreset: state.presets.selectedPreset // as defined in reducers/index.js
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    dispatchPresetSelected: (selectedPreset) => {
+      dispatch(presetSelected(selectedPreset));
+      dispatch(productionsChanged(PresetsData[selectedPreset][1]));
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Presets);

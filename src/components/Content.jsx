@@ -6,8 +6,8 @@ class Content extends React.Component {
   render () {
     return (
     <div>
-     <Alphabet alphabet={this.props.alphabet} />
-     <Productions onChange={this.props.onChange} productions={this.props.productions} />
+     <Alphabet />
+     <Productions />
     </div>
     );
   }
