@@ -1,38 +1,27 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { SelectField, MenuItem } from 'material-ui';
 import { presetSelected, productionsChanged } from '../actions';
 import PresetsData from '../constants/PresetsData';
 
 class Presets extends React.Component {
-  constructor (props) {
-    super(props);
-    this.onChange = this.onChange.bind(this);
-  }
-
   render () {
     return (
-    <div>
-      Presets:
-      <select value={this.props.selectedPreset} onChange={this.onChange}>
-        {PresetsData.map((x, i) => <option key={i} value={i}>
-                                     {x[0]}
-                                   </option>)}
-      </select>
-    </div>
+      <SelectField value={this.props.selectedPreset} floatingLabelText='Presets' onChange={(event, index, value) => this.updateState(value)}>
+        {PresetsData.map((x, i) => <MenuItem primaryText={x[0]} key={i} value={i} />
+         )}
+      </SelectField>
     );
   }
 
-  onChange (event) {
-    this.updateState(event.target.value);
+  componentDidMount () {
+    this.updateState(this.props.selectedPreset);
   }
 
   updateState (selectedIndex) {
     this.props.dispatchPresetSelected(selectedIndex);
   }
 
-  componentDidMount () {
-    this.updateState(this.props.selectedPreset);
-  }
 }
 
 const mapStateToProps = state => {

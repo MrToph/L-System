@@ -1,14 +1,15 @@
 import React from 'react';
+import { Field, TextField } from 'material-ui';
 import { connect } from 'react-redux';
 
 class Alphabet extends React.Component {
   render () {
     return (
     <div>
+      <h3>Alphabet</h3>
       <p>
-        <b>Alphabet:</b> (will update automatically)
+        {this.props.alphabet}
       </p>
-      {this.props.alphabet}
     </div>
     );
   }

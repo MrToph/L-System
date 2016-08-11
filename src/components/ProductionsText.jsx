@@ -1,26 +1,28 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { TextField } from 'material-ui';
 import { productionsChanged } from '../actions';
 
 class ProductionsText extends React.Component {
   constructor (props) {
     super(props);
-    this.handleChange = this.handleChange.bind(this);
-    this.attr = {
-      style: {
-        width: '600px'
-      },
-      rows: 5
-    };
+    this.onChange = this.onChange.bind(this);
   }
   render () {
     return (
-    <textarea {...this.attr} onChange={this.handleChange} value={this.props.productions} />
+    <TextField
+      name='Productions'
+      hintText='Enter your grammar for the L-System here'
+      multiLine fullWidth
+      rows={5}
+      floatingLabelText='L-System Grammar Productions'
+      onChange={this.onChange}
+      value={this.props.productions} />
     );
   }
 
-  handleChange (event) {
-    this.props.fireProductionsChanged(event.target.value);
+  onChange (event, value) {
+    this.props.fireProductionsChanged(value);
   }
 }
 
@@ -32,8 +34,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fireProductionsChanged: (something) => {
-      dispatch(productionsChanged(something));
+    fireProductionsChanged: (value) => {
+      dispatch(productionsChanged(value));
     }
   };
 };

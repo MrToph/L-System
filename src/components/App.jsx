@@ -5,7 +5,7 @@ import Content from '../components/Content';
 class App extends React.Component {
   render () {
     return (
-    <div>
+    <div className='App'>
       <Presets />
       <Content />
     </div>
