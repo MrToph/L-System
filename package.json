@@ -1,7 +1,7 @@
 {
   "name": "L-System",
   "version": "1.0.0",
-  "description": "Implementation of an L-System in JavaScript ES6",
+  "description": "Implementation of a Lindenmayer-System in JavaScript ES6",
   "author": "Christoph Michel",
   "license": "MIT",
   "devDependencies": {
@@ -11,6 +11,7 @@
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-0": "^6.5.0",
+    "compression-webpack-plugin": "^0.3.1",
     "css-loader": "^0.23.1",
     "material-ui": "^0.15.4",
     "react": "^15.3.0",
@@ -31,12 +32,16 @@
   },
   "scripts": {
     "start": "webpack-dev-server --display-error-details --progress --inline",
-    "local": "webpack --display-error-details --progress"
+    "local": "webpack --display-error-details --progress",
+    "analyze": "webpack --json | webpack-bundle-size-analyzer"
   },
   "semistandard": {
     "ignore": [
       "/src/dist/"
     ]
   },
-  "optionalDependencies": {}
+  "optionalDependencies": {},
+  "dependencies": {
+    "webpack-bundle-size-analyzer": "^2.0.2"
+  }
 }

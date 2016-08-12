@@ -1,5 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
+var CompressionPlugin = require('compression-webpack-plugin');
 
 var isProduction = false; // process.env.NODE_ENV ? process.env.NODE_ENV.trim() == 'production' : false,
 var serverPort = 8080;
@@ -22,6 +23,7 @@ var config = {
       {
         test: /\.jsx?$/,
         loader: 'babel',
+        exclude: /node_modules/,
         query: {
           presets: ['es2015', 'react', 'stage-0'] // stage-0 is ES7
         }
@@ -44,9 +46,21 @@ if (isProduction) {
   config.plugins.push(
     new webpack.optimize.UglifyJsPlugin({
       compress: {
-        warnings: false
-      }
+        warnings: false,
+        screw_ie8: true
+      },
+      comments: false,
+      sourceMap: false
     })
+  );
+  config.plugins.push(
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+      }
+    }));
+  config.plugins.push(
+    new CompressionPlugin()
   );
 }
 

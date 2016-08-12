@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { SelectField, MenuItem } from 'material-ui';
-import { presetSelected, productionsChanged } from '../actions';
+import { presetSelected } from '../actions';
 import PresetsData from '../constants/PresetsData';
 
 class Presets extends React.Component {
@@ -33,8 +33,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     dispatchPresetSelected: (selectedPreset) => {
-      dispatch(presetSelected(selectedPreset));
-      dispatch(productionsChanged(PresetsData[selectedPreset][1]));
+      dispatch(presetSelected({selectedPreset, productions: PresetsData[selectedPreset][1]}));
     }
   };
 };

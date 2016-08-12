@@ -1,2 +1,2 @@
-# L-System
-Implementation of an L-System in JavaScript ES6
+# Lindenmayer-System
+Implementation of a (context-free) Lindenmayer-System in JavaScript ES6

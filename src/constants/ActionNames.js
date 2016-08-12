@@ -7,7 +7,8 @@ class ActionNameError extends Error {
 
 let target = {
   presetSelected: 'PRESET_SELECTED',
-  productionsChanged: 'PRODUCTIONS_CHANGED'
+  productionsChanged: 'PRODUCTIONS_CHANGED',
+  numIterationsChanged: 'ITERATIONS_CHANGED'
 };
 let handler = {
   get: (target, key) => {

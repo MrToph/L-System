@@ -13,3 +13,10 @@ export function productionsChanged (production) {
     payload: production
   };
 };
+
+export function numIterationsChanged (iterations) {
+  return {
+    type: ACTIONS.numIterationsChanged,
+    payload: iterations
+  };
+};

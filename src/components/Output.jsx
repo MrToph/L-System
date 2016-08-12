@@ -1,26 +1,82 @@
 import React from 'react';
-import { FloatingActionButton } from 'material-ui';
-import { ContentAdd, ContentRemove } from 'material-ui/svg-icons';
+import { connect } from 'react-redux';
+import { FloatingActionButton, TextField } from 'material-ui';
+import ContentAdd from 'material-ui/svg-icons/content/add';
+import ContentRemove from 'material-ui/svg-icons/content/remove';
+import { numIterationsChanged } from '../actions';
 
 class Output extends React.Component {
   constructor (props) {
     super(props);
+    this.textStyle = {
+    };
+    this.buttonStyle = {
+      verticalAlign: 'middle',
+      margin: 5
+    };
+    this.onMinusClicked = this.onMinusClicked.bind(this);
+    this.onPlusClicked = this.onPlusClicked.bind(this);
+  }
+
+  onPlusClicked () {
+    this.onNumIterationsChanged(this.props.numIterations + 1);
+  }
+
+  onMinusClicked () {
+    this.onNumIterationsChanged(this.props.numIterations - 1);
+  }
+
+  onNumIterationsChanged (iterations) {
+    this.props.fireNumiterationsChanged(iterations);
   }
 
   render () {
     return (
     <div id='Output'>
-      <h3>Output</h3> Press the buttons to set the number of iterations
-      <FloatingActionButton mini>
+      <h3>Output</h3>
+      <span style={this.textStyle}>Press the buttons to set the number of iterations:</span>
+      <FloatingActionButton
+        style={this.buttonStyle}
+        mini
+        zDepth={1}
+        disabled={this.props.numIterations === 0}
+        onTouchTap={this.onMinusClicked}>
         <ContentRemove />
       </FloatingActionButton>
-      69
-      <FloatingActionButton mini>
+      <span style={this.textStyle}>{this.props.numIterations}</span>
+      <FloatingActionButton
+        style={this.buttonStyle}
+        mini
+        zDepth={1}
+        onTouchTap={this.onPlusClicked}>
         <ContentAdd />
       </FloatingActionButton>
+      <TextField
+        name='Output'
+        hintText='The output of the grammar after the specified number of iterations will be here'
+        multiLine
+        fullWidth
+        readOnly
+        floatingLabelText='Output of the L-System'
+        value={this.props.output} />
     </div>
     );
   }
 }
 
-export default Output;
+const mapStateToProps = state => {
+  return {
+    numIterations: state.output.numIterations,
+    output: state.output.output
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    fireNumiterationsChanged: (value) => {
+      dispatch(numIterationsChanged(value));
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Output);
