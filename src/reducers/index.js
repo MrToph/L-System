@@ -1,38 +1,50 @@
 import ACTIONS from '../constants/ActionNames';
-// import { combineReducers } from 'redux';
-// import presetsReducer from './presetsReducer';
-// import grammarReducer from './grammarReducer';
-// import outputReducer from './outputReducer';
+import LSystem from '../LSystem/';
 
-// const reducers = combineReducers({
-//   presets: presetsReducer,
-//   grammar: grammarReducer,
-//   output: outputReducer
-// });
+const LSys = new LSystem();
 
+const parse = productions => {
+  try {
+    LSys.parseProductions(productions);
+    return '';
+  } catch (error) {
+    console.log(error.message);
+    return error.message;
+  }
+};
+
+const getOutput = numIterations => {
+  let lines = LSys.iterate(numIterations);
+  return lines;
+};
 // reducer should be pure, i.e. not mutate state or action
-const reducer = (state = {presets: {selectedPreset: 4}, grammar: {productions: ''}, output: {numIterations: 2, output: ''}} , action) => {
+const reducer = (state = {snackbar: {text: ''}, presets: {selectedPreset: 4}, grammar: {productions: ''}, output: {numIterations: 2, text: ''}} , action) => {
   switch (action.type) {
     case ACTIONS.presetSelected: {
-    	// need to change presets, productions and output
+      // need to change presets, productions and output
       let defaultIterations = 2;
-      let output = 'DEFAULTOUTPUT ' + defaultIterations;
-      let productions = action.payload.productions;
       let selectedPreset = action.payload.selectedPreset;
-      let overwrite = {presets: {selectedPreset}, grammar: {productions}, output: {numIterations: defaultIterations, output}};
+      let productions = action.payload.productions;
+      // pass it to LSystem
+      let error = parse(productions);
+      let text = getOutput(defaultIterations);
+      // build new state
+      let overwrite = {snackbar: {text: error}, presets: {selectedPreset}, grammar: {productions}, output: {numIterations: defaultIterations, text}};
       return Object.assign({}, state, overwrite);
     }
     case ACTIONS.productionsChanged: {
-    	// need to change productions and output
+      // need to change productions and output
       let productions = action.payload;
-      let output = 'PRODUCTIONSCHANGED ' + Math.random();
-      return Object.assign({}, state, {grammar: {productions}, output: {output}});
+      // pass it to LSystem
+      let error = parse(productions);
+      let text = getOutput(state.output.numIterations);
+      return Object.assign({}, state, {snackbar: {text: error}, grammar: {productions}, output: {...state.output, text}}); // have to do a 'deep object merge' for output, otherwise output.numIterations would be removed
     }
     case ACTIONS.numIterationsChanged: {
-    	// need to change output
+      // need to change output
       let numIterations = action.payload;
-      let output = numIterations + '';
-      return Object.assign({}, state, {output: {numIterations, output}});
+      let text = getOutput(numIterations);
+      return Object.assign({}, state, {output: {numIterations, text}});
     }
   }
   return state;

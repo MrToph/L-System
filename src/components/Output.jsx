@@ -67,7 +67,7 @@ class Output extends React.Component {
 const mapStateToProps = state => {
   return {
     numIterations: state.output.numIterations,
-    output: state.output.output
+    output: state.output.text
   };
 };
 
