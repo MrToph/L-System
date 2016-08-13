@@ -4,10 +4,10 @@ import ProductionsText from '../components/ProductionsText';
 class Productions extends React.Component {
   render () {
     return (
-    <div>
+    <section id='Productions'>
       <h2>Productions</h2>
       <ProductionsText />
-    </div>
+    </section>
     );
   }
 }

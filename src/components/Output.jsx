@@ -32,8 +32,8 @@ class Output extends React.Component {
 
   render () {
     return (
-    <div id='Output'>
-      <h3>Output</h3>
+    <section id='Output'>
+      <h2>Output</h2>
       <span style={this.textStyle}>Press the buttons to set the number of iterations:</span>
       <FloatingActionButton
         style={this.buttonStyle}
@@ -59,7 +59,7 @@ class Output extends React.Component {
         readOnly
         floatingLabelText='Output of the L-System'
         value={this.props.output} />
-    </div>
+    </section>
     );
   }
 }
