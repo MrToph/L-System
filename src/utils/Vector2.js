@@ -25,6 +25,10 @@ class Vector2 {
     return new Vector2(0, -1);
   }
 
+  static fromAngle (angle) {
+    return new Vector2(Math.cos(angle), Math.sin(angle));
+  }
+
   constructor (x = 0 , y = 0) {
     if (typeof x !== 'number') throw new Error(`Vector2::constructor: ${x} is not a number.`);
     if (typeof y !== 'number') throw new Error(`Vector2::constructor: ${y} is not a number.`);

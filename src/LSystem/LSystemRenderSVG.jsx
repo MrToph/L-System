@@ -1,12 +1,11 @@
-import Vector2 from '../utils/Vector2';
-import * as d3 from 'd3';
-import TestSystem from '../LSystem/AbstractDrawingSubsystem';
-import '../css/svg.css';
+import * as d3select from 'd3-selection';
+import { getDrawingSubsystem } from '../constants/PresetsData';
+import '../css/svg.css'; // need svgBorder class from it
 
 class LSystemRenderSVG {
   setSVG (svg) {
     this.width = this.height = 1000;
-    this.svg = d3.select(svg);
+    this.svg = d3select.select(svg);
     this.svg.attr('viewBox', `0 0 ${this.width} ${this.height}`);
     this.translate = [0, 0];
     this.scale = 1;
@@ -20,31 +19,18 @@ class LSystemRenderSVG {
       .attr('transform', 'translate(' + this.translate[0] + ',' + this.translate[1] + '),scale(' + this.scale + ')');
     this.container = container;
     this.drawingCanvas = this.container.append('g').attr('class', 'drawingCanvas');
-    console.log('LSystemRenderSVG::setSVG', this.drawingCanvas);
   }
 
   // a system that takes a string and gives the individual symbols a meaning. Usually a turtle drawing system
   setDrawingSubsystem (subSystemIndex) {
-    // order as defined in ../constants/PresetsData.js
-    let subSystem;
-    switch (subSystemIndex) {
-      case 4: {
-        subSystem = new TestSystem(this.drawingCanvas, this.width, this.height);
-        break;
-      }
-      default: {
-        subSystem = new TestSystem(this.drawingCanvas, this.width, this.height);
-      // throw new Error(`LSystemRenderSVG::setDrawingSubsystem: Invalid subSystemIndex ${subSystemIndex}.`)
-      }
-    }
-    this.drawingSystem = subSystem;
-    console.log('LSystemRenderSVG::setDrawingSubsystem', subSystemIndex, this.drawingSystem);
+    // defined in ../constants/PresetsData.js
+    let SubsystemClass = getDrawingSubsystem(subSystemIndex);
+    this.drawingSystem = new SubsystemClass(this.drawingCanvas, this.width, this.height);
   }
 
-  renderString (s) {
+  renderString (s, iteration) {
     this.drawingCanvas.selectAll('*').remove(); // clear children
-    this.drawingSystem.renderString(s);
-    console.log('LSystemRenderSVG::renderString', s);
+    this.drawingSystem.renderString(s, iteration);
   }
 }
 

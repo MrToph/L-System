@@ -1,4 +1,15 @@
 .svgBorder{
 	fill: none;
-	stroke: red;
+	stroke: black;
+}
+
+.cantorDustLine{
+	stroke-width: 100;
+	stroke: black;
+}
+
+.path{
+	/*stroke-width: 2;*/
+	fill: none;
+	stroke: black;
 }

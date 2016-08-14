@@ -6,6 +6,7 @@ class AbstractDrawingSubsystem {
     this.canvas = canvas;
   }
 
+  // overwrite this function in subclasses
   renderString (s) {
     this.canvas.append('text')
       .text('AbstractDrawingSubsystem as SVG text')
