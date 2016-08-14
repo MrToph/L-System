@@ -9,12 +9,12 @@ class Content extends React.Component {
     this.style = {
       // boxSizing: 'border-box',
       // padding: '20px',
-      margin: '5px 10px',
+      margin: '5px auto',
       display: 'inline-block',
-      width: '600px',
+      width: '100%',
       verticalAlign: 'top',
-      // maxWidth: '600px',
-      // minWidth: '400px'
+      maxWidth: '600px',
+      minWidth: '500px'
     };
   }
   render () {

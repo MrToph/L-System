@@ -8,7 +8,6 @@ const parse = productions => {
     LSys.parseProductions(productions);
     return '';
   } catch (error) {
-    console.log(error.message);
     return error.message;
   }
 };

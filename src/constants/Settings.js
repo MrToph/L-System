@@ -1,3 +1,3 @@
 export default {
-  log: true
+  log: false
 };

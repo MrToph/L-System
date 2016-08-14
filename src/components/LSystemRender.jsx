@@ -1,7 +1,6 @@
 import React from 'react';
-import { Paper } from 'material-ui';
-import Productions from '../components/Productions';
-import Output from '../components/Output';
+import { connect } from 'react-redux';
+import LSystemRenderSVG from '../LSystem/LSystemRenderSVG';
 
 class LSystemRender extends React.Component {
   constructor (props) {
@@ -9,26 +8,44 @@ class LSystemRender extends React.Component {
     this.style = {
       // boxSizing: 'border-box',
       // padding: '20px',
-      margin: '5px 10px',
+      margin: '5px auto',
       display: 'inline-block',
-      width: '600px',
-    // maxWidth: '600px',
-    // minWidth: '400px'
+      width: '100%',
+      maxWidth: '600px',
+      minWidth: '500px'
     };
+    this.svgStyles = {
+      svgViewboxWidth: 1000
+    };
+    this.svgRenderer = new LSystemRenderSVG();
   }
   render () {
     return (
     <section id='LSystemRender' style={this.style}>
-      <svg
-        width="600px"
-        height="600px"
-        xmlns="http://www.w3.org/2000/svg"
-        xmlnsXlink="http://www.w3.org/1999/xlink">
-        <rect x='0' y='0' width='600px' height='600px' fill='none' stroke='red'></rect>
+      <svg ref={ref => this.svgRenderer.setSVG(ref)} width='100%' height='100%'>
       </svg>
     </section>
     );
   }
+
+  componentWillReceiveProps (newProps) {
+    if (!this.state || this.state.selectedPreset !== newProps.selectedPreset) {
+      this.svgRenderer.setDrawingSubsystem(newProps.selectedPreset);
+    }
+    this.svgRenderer.renderString(newProps.output);
+    this.setState(newProps);
+  }
+
+  shouldComponentUpdate () {
+    return false; // we will redraw the svg on our own
+  }
 }
 
-export default LSystemRender;
+const mapStateToProps = state => {
+  return {
+    output: state.output.text,
+    selectedPreset: state.presets.selectedPreset
+  };
+};
+
+export default connect(mapStateToProps)(LSystemRender);
