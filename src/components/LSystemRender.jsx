@@ -32,7 +32,7 @@ class LSystemRender extends React.Component {
     if (!this.state || this.state.selectedPreset !== newProps.selectedPreset) {
       this.svgRenderer.setDrawingSubsystem(newProps.selectedPreset);
     }
-    this.svgRenderer.renderString(newProps.output, newProps.numIterations);
+    this.svgRenderer.renderString(newProps.output);
     this.setState(newProps);
   }
 
@@ -44,8 +44,7 @@ class LSystemRender extends React.Component {
 const mapStateToProps = state => {
   return {
     output: state.output.text,
-    selectedPreset: state.presets.selectedPreset,
-    numIterations: state.output.numIterations
+    selectedPreset: state.presets.selectedPreset
   };
 };
 

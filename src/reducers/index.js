@@ -17,11 +17,11 @@ const getOutput = numIterations => {
   return lines;
 };
 // reducer should be pure, i.e. not mutate state or action
-const reducer = (state = {snackbar: {text: ''}, presets: {selectedPreset: 2}, grammar: {productions: ''}, output: {numIterations: 2, text: ''}} , action) => {
+const reducer = (state = {snackbar: {text: ''}, presets: {selectedPreset: 3}, grammar: {productions: ''}, output: {numIterations: 2, text: ''}} , action) => {
   switch (action.type) {
     case ACTIONS.presetSelected: {
       // need to change presets, productions and output
-      let defaultIterations = 2;
+      let defaultIterations = 1;
       let selectedPreset = action.payload.selectedPreset;
       let productions = action.payload.productions;
       // pass it to LSystem

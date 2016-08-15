@@ -3,7 +3,6 @@ import Vector2 from '../utils/Vector2';
 import '../css/svg.css'; // need svgBorder class from it
 
 class CantorDust extends AbstractDrawingSubsystem {
-  // overwrite this function in subclasses
   renderString (s) {
     let length = this.width / s.length;
     let height = this.height / 2;

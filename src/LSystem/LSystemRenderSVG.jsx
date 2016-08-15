@@ -4,10 +4,12 @@ import '../css/svg.css'; // need svgBorder class from it
 
 class LSystemRenderSVG {
   setSVG (svg) {
-    this.width = this.height = 1000;
+    this.margin = 100;
+    this.canvasWidth = this.canvasHeight = 1000;
+    this.width = this.height = this.canvasWidth + this.margin;
     this.svg = d3select.select(svg);
     this.svg.attr('viewBox', `0 0 ${this.width} ${this.height}`);
-    this.translate = [0, 0];
+    this.translate = [this.margin / 2, this.margin / 2];
     this.scale = 1;
     this.svg.append('rect')
       .attr('class', 'svgBorder')
@@ -24,13 +26,14 @@ class LSystemRenderSVG {
   // a system that takes a string and gives the individual symbols a meaning. Usually a turtle drawing system
   setDrawingSubsystem (subSystemIndex) {
     // defined in ../constants/PresetsData.js
-    let SubsystemClass = getDrawingSubsystem(subSystemIndex);
-    this.drawingSystem = new SubsystemClass(this.drawingCanvas, this.width, this.height);
+    let [SubsystemClass, args] = getDrawingSubsystem(subSystemIndex);
+    this.drawingSystem = new SubsystemClass(this.drawingCanvas, this.canvasWidth, this.canvasHeight, ...args);
   }
 
-  renderString (s, iteration) {
+  renderString (s) {
+    this.drawingCanvas.attr('transform', ''); // reset transform
     this.drawingCanvas.selectAll('*').remove(); // clear children
-    this.drawingSystem.renderString(s, iteration);
+    this.drawingSystem.renderString(s);
   }
 }
 
