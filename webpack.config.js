@@ -44,6 +44,14 @@ var config = {
 
 if (isProduction) {
   config.plugins.push(
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+      }
+    }));
+  // config.plugins.push(new webpack.optimize.DedupePlugin());
+  // config.plugins.push(new webpack.optimize.OccurrenceOrderPlugin());
+  config.plugins.push(
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false,
@@ -53,12 +61,6 @@ if (isProduction) {
       sourceMap: false
     })
   );
-  config.plugins.push(
-    new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': JSON.stringify('production')
-      }
-    }));
   config.plugins.push(
     new CompressionPlugin()
   );
