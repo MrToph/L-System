@@ -44,7 +44,7 @@ class TurtleDrawingSubsystem extends AbstractDrawingSubsystem {
             stack.push([pos.clone(), angle]);
             break;
           }
-          case ']': { // push stack
+          case ']': { // pop stack
             if (stack.length > 0) {
               [pos, angle] = stack.pop();
               path.moveTo(pos.x, pos.y);
