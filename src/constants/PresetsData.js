@@ -9,7 +9,7 @@ export default [['Hilbert Curve', 'A // first line defines the axiom (start symb
   ['Dragon Curve', 'FX // first line defines the axiom (start symbols)\nX=X+YF+\nY=-FX-Y'],
   ['Cantor Dust', 'A // first line defines the axiom (start symbols)\nA=ABA // production rules are written as X = Y\nB=BBB // production rules are written as X = Y'],
   ['Sierpinski Triangle', 'A // first line defines the axiom (start symbols)\nA=+B-A-B+ // production rules are written as X = Y\nB=-A+B+A- // production rules are written as X = Y'],
-  ['Pythagoras Tree', '0 // first line defines the axiom (start symbols)\n1=11 // makes the line strokes shrink by half a size at each generation\n0=1[+0]-0 // draw line stroke, save position, turn left, draw line stroke, restore position, turn right, draw line stroke'],
+  ['Pythagoras Tree', '0 // first line defines the axiom (start symbols)\n1=11 // makes the old line strokes double in size at each iteration\n0=1[+0]-0 // draw line stroke, save position, turn left, draw line stroke, restore position, turn right, draw line stroke'],
   ['Fractal Plant', 'X // first line defines the axiom (start symbols)\nX=F-[[X]+X]+F[+FX]-X\nF=FF'],
 ];
 

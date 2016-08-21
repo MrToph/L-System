@@ -21,7 +21,7 @@ const reducer = (state = {snackbar: {text: ''}, presets: {selectedPreset: 3}, gr
   switch (action.type) {
     case ACTIONS.presetSelected: {
       // need to change presets, productions and output
-      let defaultIterations = 1;
+      let defaultIterations = 2;
       let selectedPreset = action.payload.selectedPreset;
       let productions = action.payload.productions;
       // pass it to LSystem
