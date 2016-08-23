@@ -11,7 +11,7 @@ class LSystemRender extends React.Component {
       margin: '5px auto',
       display: 'inline-block',
       width: '100%',
-      maxWidth: '600px',
+      maxWidth: '610px',
       minWidth: '500px'
     };
     this.svgStyles = {
@@ -30,9 +30,15 @@ class LSystemRender extends React.Component {
 
   componentWillReceiveProps (newProps) {
     if (!this.state || this.state.selectedPreset !== newProps.selectedPreset) {
-      this.svgRenderer.setDrawingSubsystem(newProps.selectedPreset);
+      this.svgRenderer.setDrawingSubsystem(newProps.selectedPreset, newProps.startAngle, newProps.turnAngle);
     }
-    this.svgRenderer.renderString(newProps.output);
+    if (!this.state || this.state.startAngle !== newProps.startAngle || this.state.turnAngle !== newProps.turnAngle) {
+      this.svgRenderer.setAngles(newProps.startAngle, newProps.turnAngle);
+    }
+    // only draw if angles are valid numbers
+    if (!(newProps.startAngle.length === 0 || isNaN(newProps.startAngle) || newProps.turnAngle.length === 0 || isNaN(newProps.turnAngle))) {
+      this.svgRenderer.renderString(newProps.output);
+    }
     this.setState(newProps);
   }
 
@@ -44,7 +50,9 @@ class LSystemRender extends React.Component {
 const mapStateToProps = state => {
   return {
     output: state.output.text,
-    selectedPreset: state.presets.selectedPreset
+    selectedPreset: state.presets.selectedPreset,
+    startAngle: state.grammar.startAngle,
+    turnAngle: state.grammar.turnAngle
   };
 };
 

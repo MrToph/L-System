@@ -2,7 +2,7 @@ var path = require('path');
 var webpack = require('webpack');
 var CompressionPlugin = require('compression-webpack-plugin');
 
-var isProduction = true; // process.env.NODE_ENV ? process.env.NODE_ENV.trim() == 'production' : false,
+var isProduction = false; // process.env.NODE_ENV ? process.env.NODE_ENV.trim() == 'production' : false,
 var serverPort = 8080;
 var subFolder = '/src/dist';
 var outputPath = path.join(__dirname, subFolder);

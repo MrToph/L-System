@@ -1,5 +1,6 @@
 import * as d3select from 'd3-selection';
 import { getDrawingSubsystem } from '../constants/PresetsData';
+import { DEG2RAD } from '../utils/Math';
 import '../css/svg.css'; // need svgBorder class from it
 
 class LSystemRenderSVG {
@@ -24,10 +25,15 @@ class LSystemRenderSVG {
   }
 
   // a system that takes a string and gives the individual symbols a meaning. Usually a turtle drawing system
-  setDrawingSubsystem (subSystemIndex) {
+  setDrawingSubsystem (subSystemIndex, startAngleStringDeg, turnAngleStringDeg) {
     // defined in ../constants/PresetsData.js
     let [SubsystemClass, args] = getDrawingSubsystem(subSystemIndex);
     this.drawingSystem = new SubsystemClass(this.drawingCanvas, this.canvasWidth, this.canvasHeight, ...args);
+    this.setAngles(startAngleStringDeg, turnAngleStringDeg);
+  }
+
+  setAngles (startAngleStringDeg, turnAngleStringDeg) {
+    this.drawingSystem.setAngles(parseFloat(startAngleStringDeg) * DEG2RAD, parseFloat(turnAngleStringDeg) * DEG2RAD);
   }
 
   renderString (s) {

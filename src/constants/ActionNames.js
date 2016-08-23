@@ -8,6 +8,7 @@ class ActionNameError extends Error {
 let target = {
   presetSelected: 'PRESET_SELECTED',
   productionsChanged: 'PRODUCTIONS_CHANGED',
+  anglesChanged: 'PRODUCTIONS_ANGLES_CHANGED',
   numIterationsChanged: 'ITERATIONS_CHANGED'
 };
 let handler = {

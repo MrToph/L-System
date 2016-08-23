@@ -4,6 +4,13 @@ class AbstractDrawingSubsystem {
     this.width = width;
     this.height = height;
     this.canvas = canvas;
+    this.startAngle = 0;
+    this.turnAngle = 0;
+  }
+
+  setAngles (startAngle, turnAngle) {
+    this.startAngle = startAngle;
+    this.turnAngle = turnAngle;
   }
 
   // overwrite this function in subclasses

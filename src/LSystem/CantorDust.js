@@ -10,7 +10,6 @@ class CantorDust extends AbstractDrawingSubsystem {
     for (let i = 0; i < s.length; i++) {
       if (s[i] === 'A') data.push({start: new Vector2(i * length, height), end: new Vector2((i + 1) * length, height)});
     }
-    console.log();
     this.canvas.selectAll('.cantorDustLine').data(data).enter().append('line').attr('class', 'cantorDustLine')
       .attr('x1', d => d.start.x)
       .attr('y1', d => d.start.y)

@@ -4,17 +4,17 @@ import * as d3path from 'd3-path';
 import '../css/svg.css'; // need svgBorder class from it
 
 class TurtleDrawingSubsystem extends AbstractDrawingSubsystem {
-  constructor (canvas, width, height, startAngle = 0 , angleTurn = Math.PI / 2 , drawSymbols = ['F']) {
+  constructor (canvas, width, height, drawSymbols = ['F']) {
     super(canvas, width, height);
-    this.startAngle = startAngle;
-    this.angleTurn = angleTurn;
+    this.startAngle = 0;
+    this.turnAngle = 0;
     this.drawSymbols = drawSymbols; // if turtle encounters one of these symbols, it wil draw forward
   }
 
   renderString (s) {
     let strokeLength = 10;
     this.bounds = {minX: 0, maxX: 0, minY: 0, maxY: 0};
-    const angleTurn = this.angleTurn;
+    const turnAngle = this.turnAngle;
     let angle = this.startAngle;
     // path saves all the points and line strokes
     let path = d3path.path();
@@ -33,11 +33,11 @@ class TurtleDrawingSubsystem extends AbstractDrawingSubsystem {
       } else {
         switch (s[i]) {
           case '+': { // turn left
-            angle -= angleTurn;
+            angle -= turnAngle;
             break;
           }
           case '-': { // turn right
-            angle += angleTurn;
+            angle += turnAngle;
             break;
           }
           case '[': { // push stack

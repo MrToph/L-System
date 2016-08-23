@@ -14,6 +14,13 @@ export function productionsChanged (production) {
   };
 };
 
+export function anglesChanged (anglesObj) {
+  return {
+    type: ACTIONS.anglesChanged,
+    payload: anglesObj
+  };
+};
+
 export function numIterationsChanged (iterations) {
   return {
     type: ACTIONS.numIterationsChanged,

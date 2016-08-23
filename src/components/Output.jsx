@@ -57,6 +57,7 @@ class Output extends React.Component {
         multiLine
         fullWidth
         readOnly
+        rowsMax={5}
         floatingLabelText='Output of the L-System'
         value={this.props.output} />
     </section>

@@ -35,7 +35,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     dispatchPresetSelected: (selectedPreset) => {
-      dispatch(presetSelected({selectedPreset, productions: PresetsData[selectedPreset][1]}));
+      dispatch(presetSelected({selectedPreset, productions: PresetsData[selectedPreset][3], startAngle: PresetsData[selectedPreset][1], turnAngle: PresetsData[selectedPreset][2]}));
     }
   };
 };
