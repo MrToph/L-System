@@ -12,12 +12,12 @@ class LSystemRenderSVG {
     this.svg.attr('viewBox', `0 0 ${this.width} ${this.height}`);
     this.translate = [this.margin / 2, this.margin / 2];
     this.scale = 1;
-    this.svg.append('rect')
-      .attr('class', 'svgBorder')
-      .attr('x', 0)
-      .attr('y', 0)
-      .attr('width', this.width)
-      .attr('height', this.height);
+    // this.svg.append('rect')
+    //   .attr('class', 'svgBorder')
+    //   .attr('x', 0)
+    //   .attr('y', 0)
+    //   .attr('width', this.width)
+    //   .attr('height', this.height);
     let container = this.svg.append('g').attr('class', 'container')
       .attr('transform', 'translate(' + this.translate[0] + ',' + this.translate[1] + '),scale(' + this.scale + ')');
     this.container = container;

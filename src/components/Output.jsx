@@ -8,8 +8,6 @@ import { numIterationsChanged } from '../actions';
 class Output extends React.Component {
   constructor (props) {
     super(props);
-    this.textStyle = {
-    };
     this.buttonStyle = {
       verticalAlign: 'middle',
       margin: 5
@@ -43,7 +41,7 @@ class Output extends React.Component {
         onTouchTap={this.onMinusClicked}>
         <ContentRemove />
       </FloatingActionButton>
-      <span style={this.textStyle}>{this.props.numIterations}</span>
+      <span>{this.props.numIterations}</span>
       <FloatingActionButton
         style={this.buttonStyle}
         mini

@@ -1,28 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import LSystemRenderSVG from '../LSystem/LSystemRenderSVG';
+import '../css/app.css';
 
 class LSystemRender extends React.Component {
   constructor (props) {
     super(props);
-    this.style = {
-      // boxSizing: 'border-box',
-      // padding: '20px',
-      margin: '5px auto',
-      display: 'inline-block',
-      width: '100%',
-      maxWidth: '610px',
-      minWidth: '500px'
-    };
-    this.svgStyles = {
-      svgViewboxWidth: 1000
-    };
     this.svgRenderer = new LSystemRenderSVG();
   }
   render () {
     return (
-    <section id='LSystemRender' style={this.style}>
-      <svg ref={ref => this.svgRenderer.setSVG(ref)} width='100%' height='100%'>
+    <section id='LSystemRender'>
+      <svg ref={ref => this.svgRenderer.setSVG(ref)}>
       </svg>
     </section>
     );

@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { TextField } from 'material-ui';
 import { productionsChanged, anglesChanged } from '../actions';
+import '../css/app.css';
 
 class Productions extends React.Component {
   constructor (props) {
@@ -37,20 +38,20 @@ class Productions extends React.Component {
         floatingLabelText='L-System Grammar Productions'
         onChange={this.onProductionsChange}
         value={this.props.productions} />
-      <TextField
-        style={{width: '50%'}}
-        name='startAngle'
-        hintText='Drawing Start Angle (deg)'
-        floatingLabelText='Start Angle'
-        onChange={this.onAnglesChange}
-        value={this.props.startAngle} />
-      <TextField
-        style={{width: '50%'}}
-        name='turnAngle'
-        hintText='Drawing Turn Angle (deg)'
-        floatingLabelText='Turn Angle'
-        onChange={this.onAnglesChange}
-        value={this.props.turnAngle} />
+      <span className='txtAngle'><TextField
+                                   style={{width: '100%'}}
+                                   name='startAngle'
+                                   hintText='Start Angle (deg)'
+                                   floatingLabelText='Start Angle'
+                                   onChange={this.onAnglesChange}
+                                   value={this.props.startAngle} /></span>
+      <span className='txtAngle'><TextField
+                                   style={{width: '100%'}}
+                                   name='turnAngle'
+                                   hintText='Turn Angle (deg)'
+                                   floatingLabelText='Turn Angle'
+                                   onChange={this.onAnglesChange}
+                                   value={this.props.turnAngle} /></span>
     </section>
     );
   }

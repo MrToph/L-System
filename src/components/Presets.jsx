@@ -7,7 +7,7 @@ import PresetsData from '../constants/PresetsData';
 class Presets extends React.Component {
   render () {
     return (
-      <section id='Presets' style={{margin: '0px 20px'}}>
+      <section id='Presets'>
       <SelectField value={this.props.selectedPreset} floatingLabelText='Presets' onChange={(event, index, value) => this.updateState(value)}>
         {PresetsData.map((x, i) => <MenuItem primaryText={x[0]} key={i} value={i} />
          )}
