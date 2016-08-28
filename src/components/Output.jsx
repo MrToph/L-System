@@ -32,32 +32,34 @@ class Output extends React.Component {
     return (
     <section id='Output'>
       <h2>Output</h2>
-      <span style={this.textStyle}>Press the buttons to set the number of iterations:</span>
-      <FloatingActionButton
-        style={this.buttonStyle}
-        mini
-        zDepth={1}
-        disabled={this.props.numIterations === 0}
-        onTouchTap={this.onMinusClicked}>
-        <ContentRemove />
-      </FloatingActionButton>
-      <span>{this.props.numIterations}</span>
-      <FloatingActionButton
-        style={this.buttonStyle}
-        mini
-        zDepth={1}
-        onTouchTap={this.onPlusClicked}>
-        <ContentAdd />
-      </FloatingActionButton>
-      <TextField
-        name='Output'
-        hintText='The output of the grammar after the specified number of iterations will be here'
-        multiLine
-        fullWidth
-        readOnly
-        rowsMax={5}
-        floatingLabelText='Output of the L-System'
-        value={this.props.output} />
+      <span>Press the buttons to set the number of iterations:</span>
+      <div>
+        <FloatingActionButton
+          style={this.buttonStyle}
+          mini
+          zDepth={1}
+          disabled={this.props.numIterations === 0}
+          onTouchTap={this.onMinusClicked}>
+          <ContentRemove />
+        </FloatingActionButton>
+        <span id='numIterations'>{this.props.numIterations}</span>
+        <FloatingActionButton
+          style={this.buttonStyle}
+          mini
+          zDepth={1}
+          onTouchTap={this.onPlusClicked}>
+          <ContentAdd />
+        </FloatingActionButton>
+        <TextField
+          name='Output'
+          hintText='The output of the grammar after the specified number of iterations will be here'
+          multiLine
+          fullWidth
+          readOnly
+          rowsMax={5}
+          floatingLabelText='Output of the L-System'
+          value={this.props.output} />
+      </div>
     </section>
     );
   }

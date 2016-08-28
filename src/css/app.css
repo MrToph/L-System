@@ -8,6 +8,12 @@
 
 #Presets{}
 
+#numIterations{
+  display: inline-block;
+  width: 2em;
+  text-align: center;
+}
+
 #LSystemRender{
   margin-top: 10px;
 }
@@ -48,10 +54,10 @@
   }
 
   /* Flexbox */
-.flexContainer{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-start;
-}
+  .flexContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
 }
