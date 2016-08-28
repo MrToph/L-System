@@ -12,7 +12,7 @@ class App extends React.Component {
     // around our app, like Paper
     return (
     <section id='App'>
-      <p>Read the development post <a href="/fractals-with-l-systems-in-d3-js">here</a> on my blog</p>
+      <p>Read the development post <a href="http://cmichel.io/fractals-with-l-systems-in-d3-js">here</a> on my blog.</p>
       <Paper className='Paper'>
         <h1>Context-free Lindenmayer System</h1>
         <Presets />
