@@ -1,31 +1,15 @@
-
-/* App.jsx */
 #App {
   max-width: 1240px; /* max-width of #Content + 2*Paper padding */
-}
-
-#mainContent{ /* Content is display:inline-block which is treated as text => to center it horizontally we need to set text-align:center */
-  text-align: center;
 }
 
 .Paper{
   padding: 20px;
 }
 
-/* Presets.jsx */
 #Presets{}
 
-/* Content.jsx */
-/* LSystemRender.jsx */
-#Content, #LSystemRender{
-/*  box-sizing: border-box;
-  padding: 20px;*/
-  margin: 0 auto;
-  display: inline-block;
-  width: 100%;
-  vertical-align: top;
-  max-width: 600px;
-  min-width: 500px;
+#LSystemRender{
+  margin-top: 10px;
 }
 
 #LSystemRender svg{
@@ -40,6 +24,34 @@
   width: 10em;
 }
 
-/* Output.jsx */
+/* Flexbox */
+.flexContainerHori{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
 
-/* ErrorSnackbar.jsx */
+.flexContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch; /*stretch children horizontally*/
+}
+
+@media (min-width: 768px) {
+  #LSystemRender{
+    margin-top: 0px;
+  }
+
+  #Content, #LSystemRender{
+    flex: 0 0 50%; /*flex-grow flex-shrink flex-basis*/
+  }
+
+  /* Flexbox */
+.flexContainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+}

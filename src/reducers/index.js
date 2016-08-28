@@ -17,7 +17,7 @@ const getOutput = numIterations => {
   return lines;
 };
 // reducer should be pure, i.e. not mutate state or action
-const reducer = (state = {snackbar: {text: ''}, presets: {selectedPreset: 3}, grammar: {productions: '', startAngle: 0, turnAngle: 0}, output: {numIterations: 2, text: ''}} , action) => {
+const reducer = (state = {snackbar: {text: ''}, presets: {selectedPreset: 5}, grammar: {productions: '', startAngle: 0, turnAngle: 0}, output: {numIterations: 2, text: ''}} , action) => {
   switch (action.type) {
     case ACTIONS.presetSelected: {  // need to change presets, productions and output
       let defaultIterations = 2;

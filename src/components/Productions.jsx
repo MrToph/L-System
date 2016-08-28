@@ -38,6 +38,7 @@ class Productions extends React.Component {
         floatingLabelText='L-System Grammar Productions'
         onChange={this.onProductionsChange}
         value={this.props.productions} />
+        <div className='flexContainerHori'>
       <span className='txtAngle'><TextField
                                    style={{width: '100%'}}
                                    name='startAngle'
@@ -51,7 +52,7 @@ class Productions extends React.Component {
                                    hintText='Turn Angle (deg)'
                                    floatingLabelText='Turn Angle'
                                    onChange={this.onAnglesChange}
-                                   value={this.props.turnAngle} /></span>
+                                   value={this.props.turnAngle} /></span></div>
     </section>
     );
   }
